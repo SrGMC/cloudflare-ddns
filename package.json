@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "author": "Álvaro Galisteo (SrGMC)",
-  "license": "MIP",
+  "license": "GNU GPLv3",
   "dependencies": {
     "sync-request": "^6.1.0"
   }
