@@ -1,0 +1,14 @@
+{
+  "name": "cloudflare-ddns",
+  "version": "1.0.0",
+  "description": "Update DNS entries in Cloudflare",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Álvaro Galisteo (SrGMC)",
+  "license": "MIP",
+  "dependencies": {
+    "sync-request": "^6.1.0"
+  }
+}
