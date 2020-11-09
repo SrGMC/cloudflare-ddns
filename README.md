@@ -1,6 +1,16 @@
-# cloudflare-ddns
+# [cloudflare-ddns](https://github.com/SrGMC/cloudflare-ddns)
 
 Update DNS entries in Cloudflare and use Cloudflare as a DDNS provider.
+
+## Table of contents
+
+- [cloudflare-ddns](#cloudflare-ddns)
+  - [Table of contents](#table-of-contents)
+  - [Setup](#setup)
+  - [Usage](#usage)
+    - [Optional arguments](#optional-arguments)
+    - [Schedule](#schedule)
+  - [Docker](#docker)
 
 ## Setup
 
@@ -36,3 +46,26 @@ node index.js [-h] [-v] [-t TIME] [-b BYPASS]
 ### Schedule
 
 This script is set up to update DNS records every 30 min.
+
+## Docker
+
+This script is available as a Docker container in [`srgmc/cloudflare-ddns`](https://hub.docker.com/r/srgmc/cloudflare-ddns)
+
+`docker-compose.yaml`
+
+```yaml
+version: "3"
+
+networks:
+    default:
+        driver: bridge
+
+services:
+    cloudflare-ddns:
+        image: srgmc/cloudflare-ddns:latest
+        volumes:
+            - /path/to/config.json:/usr/src/app/config.json
+        restart: unless-stopped
+```
+
+Remember to change `/path/to/config.json`, as this is requiered in order to be able to connect and update DNS records.
