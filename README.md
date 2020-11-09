@@ -14,18 +14,24 @@ Update DNS entries in Cloudflare and use Cloudflare as a DDNS provider.
     - `auth_key`: Your global API key. This can be obtained in **My Profile** > **API Tokens** > **Global API Key**.
     - `records`: The DNS records you want to update. You can add as many as you want:
         - `@` is the root domain.
+    - `time` (optional): Interval (in ms) of updates.
+    - `bypass` (optional): Set every record as non-proxied.
 5. Run the script with `./update-dns.sh`
+
+**Note:** `config.json` takes precedence to the optional arguments
 
 ## Usage
 
 ```bash
-./update-dns.sh [-b | -h]
+node index.js [-h] [-v] [-t TIME] [-b BYPASS]
 ```
 
 ### Optional arguments
 
-- `-b`: Bypass proxy: set all DNS records as non proxied. Useful for renewing certificates.
-- `-h`: Show this help message.
+- `-h, --help`: Show help message and exit
+- `-v, --version`: Show program's version number and exit
+- `-t TIME, --time TIME`: Interval (in ms) of update
+- `-b BYPASS, --bypass BYPASS`: Bypass proxy. Set every record as non-proxied
 
 ### Schedule
 

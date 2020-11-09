@@ -9,6 +9,7 @@
   "author": "Álvaro Galisteo (SrGMC)",
   "license": "GNU GPLv3",
   "dependencies": {
+    "argparse": "^2.0.1",
     "sync-request": "^6.1.0"
   }
 }

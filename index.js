@@ -1,38 +1,37 @@
 const request = require("sync-request");
 const fs = require("fs");
+const { ArgumentParser } = require('argparse');
+const { version } = require('./package.json');
 
+// Variables
+
+// Config
 var ZONE_ID = "";
 var ZONE_NAME = "";
 var AUTH_EMAIL = "";
 var AUTH_KEY = "";
 var records = {};
+var updateTime = 300000;
+var bypass = false;
 
-if (process.argv[2] === "-h") {
-    showHelp();
-} else if (process.argv.length === 3 && process.argv[2] !== "-b") {
-    console.log("Error: Unrecognized argument.\n");
-    showHelp();
-} else if (process.argv.length >= 4) {
-    console.log("Error: Invalid number of arguments.\n");
-    showHelp();
-}
-
-function showHelp() {
-    console.log("Node.js script to update Cloudflare DNS records");
-    console.log("Usage: ./update-dns.sh [-b | -h]\n");
-    console.log("Optional arguments:");
-    console.log(" -b          Bypass proxy: set all DNS records as non proxied.");
-    console.log("             Useful for renewing certificates.");
-    console.log(" -h          Show this help message");
-    process.exit(1);
-}
-
-// Global variables
+// Requests
 var IP = "";
-var bypass = process.argv[2] === "-b" ? true : false;
 const API_ENDPOINT = "https://api.cloudflare.com/client/v4/zones" + ZONE_ID;
-
 var recordOptions = {};
+
+// Argument parser
+const parser = new ArgumentParser({
+    description: 'Node.js program to update Cloudflare DNS records \n By Álvaro Galisteo (https://alvaro.galisteo.me)'
+});
+
+parser.add_argument('-v', '--version', { action: 'version', version });
+parser.add_argument('-t', '--time', { help: 'Interval (in ms) of update' });
+parser.add_argument('-b', '--bypass', { help: 'Bypass proxy. Set every record as non-proxied' });
+
+var args = parser.parse_args()
+
+updateTime = args.time ? args.time : updateTime;
+bypass = args.bypass ? args.bypass : bypass;
 
 // Get public IP
 function getIP() {
@@ -117,7 +116,7 @@ function main() {
         getRecords();
         updateRecords();
         console.log("Updated successfully");
-    }, 30000);
+    }, updateTime);
 }
 
 fs.readFile("./config.json", "utf8", function (err, data) {
@@ -131,6 +130,9 @@ fs.readFile("./config.json", "utf8", function (err, data) {
     AUTH_EMAIL = config.auth_email;
     AUTH_KEY = config.auth_key;
     records = config.records;
+
+    updateTime = config.time ? config.time : updateTime;
+    bypass = config.bypass ? config.bypass : bypass;
 
     main();
 });
