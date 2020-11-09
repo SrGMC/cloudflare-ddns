@@ -1,0 +1,11 @@
+{
+    "zone_id": "[Your Zone ID]",
+    "zone_name": "[Your Zone Name]",
+    "auth_email": "[Your Email]",
+    "auth_key": "[Your Cloudflare Global API]",
+    "records": {
+        "@": { "type": "A", "proxied": true },
+        "subdomain1": { "type": "A", "proxied": false },
+        "subdomain2": { "type": "A", "proxied": true }
+    }
+}
