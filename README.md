@@ -11,6 +11,8 @@ Update DNS entries in Cloudflare and use Cloudflare as a DDNS provider.
     - [Optional arguments](#optional-arguments)
     - [Schedule](#schedule)
   - [Docker](#docker)
+    - [Tags](#tags)
+    - [`docker-compose.yaml`](#docker-composeyaml)
 
 ## Setup
 
@@ -51,7 +53,12 @@ This script is set up to update DNS records every 30 min.
 
 This script is available as a Docker container in [`srgmc/cloudflare-ddns`](https://hub.docker.com/r/srgmc/cloudflare-ddns)
 
-`docker-compose.yaml`
+### Tags
+
+- `srgmc/cloudflare-ddns:latest`: Latest version
+- `srgmc/cloudflare-ddns:armv7l`: Latest version compiled form ARMv7
+
+### `docker-compose.yaml`
 
 ```yaml
 version: "3"
