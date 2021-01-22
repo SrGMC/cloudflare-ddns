@@ -1,0 +1,17 @@
+[Unit]
+Description=Cloudflare DDNS Service
+Wants=network-online.target
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+User=root
+PermissionsStartOnly=true
+WorkingDirectory=/opt/cloudflare-ddns
+ExecStart=/usr/local/bin/node index.js
+Restart=always
+RestartSec=3
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

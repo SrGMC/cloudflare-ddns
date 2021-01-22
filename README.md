@@ -7,6 +7,7 @@ Update DNS entries in Cloudflare and use Cloudflare as a DDNS provider.
 - [cloudflare-ddns](#cloudflare-ddns)
   - [Table of contents](#table-of-contents)
   - [Setup](#setup)
+    - [SystemD Service](#systemd-service)
   - [Usage](#usage)
     - [Optional arguments](#optional-arguments)
     - [Schedule](#schedule)
@@ -28,9 +29,18 @@ Update DNS entries in Cloudflare and use Cloudflare as a DDNS provider.
         - `@` is the root domain.
     - `time` (optional): Interval (in ms) of updates.
     - `bypass` (optional): Set every record as non-proxied.
-5. Run the script with `./update-dns.sh`
+5. Run the script with `npm start` or `node index.js`
 
 **Note:** `config.json` takes precedence to the optional arguments
+
+### SystemD Service
+
+A SystemD Service file is provided in this repository. The steps to install are the following
+
+1. Copy `cloudflare-ddns.service` to `/etc/systemd/system/cloudflare-ddns.service`
+2. Make sure `node` is executed from `/usr/local/bin/node`. This can be checked with `which node`
+3. Install the service: `sudo systemctl enable cloudflare-ddns.service`
+4. Start the service: `sudo systemctl start cloudflare-ddns.service`
 
 ## Usage
 

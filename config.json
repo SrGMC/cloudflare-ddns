@@ -3,6 +3,8 @@
     "zone_name": "[Your Zone Name]",
     "auth_email": "[Your Email]",
     "auth_key": "[Your Cloudflare Global API]",
+    "time": 300000,
+    "bypass": false,
     "records": {
         "@": { "type": "A", "proxied": true },
         "subdomain1": { "type": "A", "proxied": false },
