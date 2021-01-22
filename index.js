@@ -11,7 +11,7 @@ var ZONE_NAME = "";
 var AUTH_EMAIL = "";
 var AUTH_KEY = "";
 var records = {};
-var updateTime = 300000;
+var updateTime = 1800000;
 var bypass = false;
 
 // Requests
