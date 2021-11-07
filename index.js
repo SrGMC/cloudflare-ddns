@@ -59,8 +59,8 @@ function getRecords() {
         var result = JSON.parse(res.getBody()).result;
 
         for (var i = 0; i < result.length; i++) {
-            var name = result[i].name.replace(ZONE_NAME, "").replace(".", "");
-            if (name === "") {
+            var name = result[i].name.replace("." + ZONE_NAME, "");
+            if (name === ZONE_NAME) {
                 name = "@";
             }
 
